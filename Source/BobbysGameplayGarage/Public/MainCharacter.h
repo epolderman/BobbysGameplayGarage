@@ -11,21 +11,42 @@ class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this character's properties
-	AMainCharacter();
+private:
+	/*UPROPERTY(BlueprintReadOnly, Category = "Gameplay")*/
 
+	// default is Third Person
+	bool bIsFirstPersonPerspectiveEnabled;
+
+	const float CAMERA_BOOM_DISTANCE = 300.f;
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+
+	void MoveForward(float Value);
+
+	void MoveRight(float Value);
+
+	void TurnAtRate(float Rate);
+
+	void LookUpAtRate(float Rate);
+
+	void EnableFirstPersonPerspective();
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
+	// Camera 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		class USpringArmComponent* CameraBoom;
+
+	// Trailing Camera
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		class UCameraComponent* TrailingCamera;
+
+	// Constructor
+	AMainCharacter();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float BaseTurnRate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float BaseLookUpRate;
 };
