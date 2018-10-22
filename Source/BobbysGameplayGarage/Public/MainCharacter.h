@@ -17,7 +17,7 @@ private:
 	// default is Third Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
-	const float CAMERA_BOOM_DISTANCE = 300.f;
+	const float CAMERA_BOOM_DISTANCE = 300.0f;
 protected:
 
 	void MoveForward(float Value);
@@ -31,6 +31,9 @@ protected:
 	void EnableFirstPersonPerspective();
 
 public:	
+	// Constructor
+	AMainCharacter();
+
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Camera 
@@ -40,9 +43,6 @@ public:
 	// Trailing Camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		class UCameraComponent* TrailingCamera;
-
-	// Constructor
-	AMainCharacter();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseTurnRate;
