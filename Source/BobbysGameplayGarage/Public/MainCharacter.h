@@ -28,7 +28,7 @@ protected:
 
 	void LookUpAtRate(float Rate);
 
-	void EnableFirstPersonPerspective();
+	void ToggleFirstPersonPerspective();
 
 public:	
 	// Constructor

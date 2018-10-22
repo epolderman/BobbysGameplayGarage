@@ -56,7 +56,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAction("ToFirstPerson", IE_Pressed, this, &AMainCharacter::EnableFirstPersonPerspective);
+	PlayerInputComponent->BindAction("ToFirstPerson", IE_Pressed, this, &AMainCharacter::ToggleFirstPersonPerspective);
 	// PlayerInputComponent->BindAction("ToFirstPerson", IE_Pressed, this, &ACharacter::Jump);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
@@ -83,7 +83,7 @@ void AMainCharacter::LookUpAtRate(float Rate)
 }
 
 // WIP, fix this
-void AMainCharacter::EnableFirstPersonPerspective()
+void AMainCharacter::ToggleFirstPersonPerspective()
 {
 	if (TrailingCamera && CameraBoom != nullptr) {
 
