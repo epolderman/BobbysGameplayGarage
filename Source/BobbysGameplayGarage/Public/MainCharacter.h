@@ -14,10 +14,12 @@ class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
 private:
 	/*UPROPERTY(BlueprintReadOnly, Category = "Gameplay")*/
 
-	// default is Third Person
+	// Default is 3rd Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
-	const float CAMERA_BOOM_DISTANCE = 300.0f;
+	// In 3rd Person Perspective
+	const float TRAILING_CAMERA_DISTANCE = 300.0f;
+
 protected:
 
 	void MoveForward(float Value);

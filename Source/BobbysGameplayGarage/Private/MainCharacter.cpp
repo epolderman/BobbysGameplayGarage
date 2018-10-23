@@ -27,14 +27,14 @@ AMainCharacter::AMainCharacter()
 
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // matrix of only affecting the y
 	GetCharacterMovement()->JumpZVelocity = 1000.0f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = CAMERA_BOOM_DISTANCE; // The camera follows at this distance behind the character	
+	CameraBoom->TargetArmLength = TRAILING_CAMERA_DISTANCE; 
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// Create a trailing camera
@@ -48,6 +48,7 @@ AMainCharacter::AMainCharacter()
 // Called to bind functionality to input
 void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	// is the parent class constructor super needed?
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// Game Play Bindings
@@ -57,7 +58,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("ToFirstPerson", IE_Pressed, this, &AMainCharacter::ToggleFirstPersonPerspective);
-	// PlayerInputComponent->BindAction("ToFirstPerson", IE_Pressed, this, &ACharacter::Jump);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
@@ -72,7 +72,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AMainCharacter::TurnAtRate(float Rate)
 {
-	// calculate delta for this frame from the rate information
 	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
@@ -82,7 +81,7 @@ void AMainCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
-// WIP, fix this
+// WIP, and fix this
 void AMainCharacter::ToggleFirstPersonPerspective()
 {
 	if (TrailingCamera && CameraBoom != nullptr) {
@@ -95,15 +94,14 @@ void AMainCharacter::ToggleFirstPersonPerspective()
 			return;
 		}
 
-		CameraBoom->TargetArmLength = CAMERA_BOOM_DISTANCE; // The camera follows at this distance behind the character	
-		// TrailingCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+		CameraBoom->TargetArmLength = TRAILING_CAMERA_DISTANCE; // The camera follows at this distance behind the character	
 		bIsFirstPersonPerspectiveEnabled = false;
 	}
 }
 
 void AMainCharacter::MoveForward(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// UE_LOG(LogClass, Log, TEXT("Move Forward Triggered  %i"), Value);
 
@@ -119,16 +117,15 @@ void AMainCharacter::MoveForward(float Value)
 
 void AMainCharacter::MoveRight(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get right vector 
+		// get right vector which would be Y (ue4 uses the left hand coordinate system)
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
 }

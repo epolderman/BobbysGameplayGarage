@@ -17,6 +17,4 @@ protected:
 
 public:
 	AMainGameMode();
-	
-	
 };
