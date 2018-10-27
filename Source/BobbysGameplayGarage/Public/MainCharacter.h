@@ -12,13 +12,18 @@ class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
 	GENERATED_BODY()
 
 private:
-	/*UPROPERTY(BlueprintReadOnly, Category = "Gameplay")*/
-
 	// Default is 3rd Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
 	// In 3rd Person Perspective
-	const float TRAILING_CAMERA_DISTANCE = 300.0f;
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+		float TrailingCameraDistance = 300.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+		float BaseTurnRate = 45.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+		float BaseLookUpRate = 45.0f;
 
 protected:
 
@@ -32,23 +37,18 @@ protected:
 
 	void ToggleFirstPersonPerspective();
 
+	const FRotator getCharacterRotation();
+
 public:	
-	// Constructor
 	AMainCharacter();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Camera 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class USpringArmComponent* CameraBoom;
 
 	// Trailing Camera
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class UCameraComponent* TrailingCamera;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
-		float BaseTurnRate;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
-		float BaseLookUpRate;
 };

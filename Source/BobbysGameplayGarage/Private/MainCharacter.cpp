@@ -16,25 +16,23 @@ AMainCharacter::AMainCharacter()
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
-	// set our turn rates for input
-	BaseTurnRate = 45.0f;
-	BaseLookUpRate = 45.0f;
-
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // matrix of only affecting the y
-	GetCharacterMovement()->JumpZVelocity = 1000.0f;
+	// Character moves in the direction of input
+	GetCharacterMovement()->bOrientRotationToMovement = true; 
+	// matrix of only affecting the y
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); 
+	GetCharacterMovement()->JumpZVelocity = 750.0f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = TRAILING_CAMERA_DISTANCE; 
+	CameraBoom->TargetArmLength = TrailingCameraDistance; 
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// Create a trailing camera
@@ -65,6 +63,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Mouse (Turn uses Delta)
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+
 	// Controller Analog Stick
 	PlayerInputComponent->BindAxis("TurnRate", this, &AMainCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AMainCharacter::LookUpAtRate);
@@ -87,30 +86,31 @@ void AMainCharacter::ToggleFirstPersonPerspective()
 	if (TrailingCamera && CameraBoom != nullptr) {
 
 		if (!bIsFirstPersonPerspectiveEnabled) {
-			CameraBoom->TargetArmLength = 0.0f; // The camera follows at this distance behind the character	
-			TrailingCamera->RelativeLocation = FVector(0, 0, BaseEyeHeight); // Position the camera
+			// The camera follows at this distance behind the character	
+			CameraBoom->TargetArmLength = 0.0f;
+			// Position the camera
+			TrailingCamera->RelativeLocation = FVector(0, 0, BaseEyeHeight); 
 			bIsFirstPersonPerspectiveEnabled = true;
-			// UE_LOG(LogClass, Log, TEXT("EnabledFirstPersonPers %s"), TrailingCamera->GetSocketLocation().ToString());
 			return;
 		}
 
-		CameraBoom->TargetArmLength = TRAILING_CAMERA_DISTANCE; // The camera follows at this distance behind the character	
+		// The camera follows at this distance behind the character
+		CameraBoom->TargetArmLength = TrailingCameraDistance; 	
 		bIsFirstPersonPerspectiveEnabled = false;
 	}
+}
+
+const FRotator AMainCharacter::getCharacterRotation() {
+	const FRotator Rotation = Controller->GetControlRotation();
+	return FRotator(0, Rotation.Yaw, 0);
 }
 
 void AMainCharacter::MoveForward(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		// UE_LOG(LogClass, Log, TEXT("Move Forward Triggered  %i"), Value);
-
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		// get forward vector +X is forward, -X is back
+		const FVector Direction = FRotationMatrix(this->getCharacterRotation()).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
 }
@@ -119,13 +119,9 @@ void AMainCharacter::MoveRight(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
-		
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get right vector which would be Y (ue4 uses the left hand coordinate system)
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// get right vector which would be Y (ue4: left hand coordinate system)
+		// +Y is right, -Y is left
+		const FVector Direction = FRotationMatrix(this->getCharacterRotation()).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, Value);
 	}
 }
