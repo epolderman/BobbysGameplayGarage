@@ -16,13 +16,16 @@ private:
 	bool bIsFirstPersonPerspectiveEnabled;
 
 	// In 3rd Person Perspective
-	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
 		float TrailingCameraDistance = 300.0f;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
+		FVector TrailingCameraLocation = FVector(0.0f, 100.0f, 100.0f);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
 		float BaseTurnRate = 45.0f;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
 		float BaseLookUpRate = 45.0f;
 
 protected:
@@ -43,6 +46,8 @@ public:
 	AMainCharacter();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void PostInitializeComponents() override;
 
 	// Camera 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")

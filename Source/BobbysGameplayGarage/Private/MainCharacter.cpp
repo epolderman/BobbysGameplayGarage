@@ -24,6 +24,7 @@ AMainCharacter::AMainCharacter()
 	// Configure character movement
 	// Character moves in the direction of input
 	GetCharacterMovement()->bOrientRotationToMovement = true; 
+
 	// matrix of only affecting the y
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); 
 	GetCharacterMovement()->JumpZVelocity = 750.0f;
@@ -33,14 +34,24 @@ AMainCharacter::AMainCharacter()
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = TrailingCameraDistance; 
-	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
+	CameraBoom->bUsePawnControlRotation = true;
 
 	// Create a trailing camera
 	TrailingCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("TrailingCamera"));
 	TrailingCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); 
 	TrailingCamera->bUsePawnControlRotation = false; 
+	
 
 	bIsFirstPersonPerspectiveEnabled = false;
+}
+
+void AMainCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	if (this->TrailingCamera != nullptr) {
+		TrailingCamera->RelativeLocation = TrailingCameraLocation;
+	}
 }
 
 // Called to bind functionality to input
@@ -86,7 +97,6 @@ void AMainCharacter::ToggleFirstPersonPerspective()
 	if (TrailingCamera && CameraBoom != nullptr) {
 
 		if (!bIsFirstPersonPerspectiveEnabled) {
-			// The camera follows at this distance behind the character	
 			CameraBoom->TargetArmLength = 0.0f;
 			// Position the camera
 			TrailingCamera->RelativeLocation = FVector(0, 0, BaseEyeHeight); 
@@ -96,6 +106,7 @@ void AMainCharacter::ToggleFirstPersonPerspective()
 
 		// The camera follows at this distance behind the character
 		CameraBoom->TargetArmLength = TrailingCameraDistance; 	
+		TrailingCamera->RelativeLocation = TrailingCameraLocation;
 		bIsFirstPersonPerspectiveEnabled = false;
 	}
 }
