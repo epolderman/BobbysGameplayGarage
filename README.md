@@ -1,6 +1,6 @@
 # Bobby's Gameplay Garage
 ### By Erik Polderman
-#### Built in Unreal Engine 4 (4.2)
+#### [Built in Unreal Engine 4 (4.2)](https://www.unrealengine.com/en-US/blog)
 #### Programmed in C++
 
 
@@ -10,4 +10,8 @@
 
 ### Goals
 #### Set Up Main Character Class -> Blueprint [Yes] - Progress [50%]
-#### Set Up HUD for Character -> Blueprintable [Unknown / Exploratory at this point] - Progress [1%]
+#### Set Up HUD for Character -> Blueprintable [SLATE] - Progress [1%]
+#### Research and implement SLATE widgets. [1%]
+
+### User Interface
+#### [UI Framework being used is SLATE](https://docs.unrealengine.com/en-US/Programming/Slate)
