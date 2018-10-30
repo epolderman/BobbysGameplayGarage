@@ -43,6 +43,7 @@ AMainCharacter::AMainCharacter()
 	
 
 	bIsFirstPersonPerspectiveEnabled = false;
+	// UE_LOG(LogClass, Log, TEXT("Hello There!!...!"));
 }
 
 void AMainCharacter::PostInitializeComponents()
@@ -91,7 +92,7 @@ void AMainCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
-// WIP, and fix this
+// TODO: this needs to be smooth instead of instant
 void AMainCharacter::ToggleFirstPersonPerspective()
 {
 	if (TrailingCamera && CameraBoom != nullptr) {
