@@ -3,42 +3,53 @@
 #include "SMyGenericCompoundWidget.h"
 #include "SlateOptMacros.h"
 #include "Engine.h"
+#include "MainHUD.h"
+
+// NOTE: onClicked takes (ptr to widget, delegate (pointer to method) 
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SMyGenericCompoundWidget::Construct(const FArguments& InArgs)
 {
+	
 	// pass in our arguments
 	HUD = InArgs._hudController;
+	/*OnClicked = InArgs._OnClicked;*/
 
+	// OnClicked.BindRaw(HUD.Get(), &AMainHUD::ButtonClick)
 
-	// onClicked takes (ptr to widget, delegate(pointer to method) 
+	// OnClicked.BindRaw(HUD.Get(), &AMainHUD::ButtonClick);
+	// OnClicked.CreateRaw(HUD, &AMainHUD::ButtonClick);
+
 	ChildSlot
-		.VAlign(VAlign_Center)
-		.HAlign(HAlign_Center)
-		[
-			SNew(SButton)
-			.VAlign(VAlign_Center)
-		.HAlign(HAlign_Center)
-		.OnHovered_Raw(this, &SMyGenericCompoundWidget::ButtonHovered)
-		.ButtonColorAndOpacity(FSlateColor(FLinearColor(0.1f, 0.5f, 0.5f, 1.0f)))
-		.Text(this->buttonLabel.FromString("Slate Button")).DesiredSizeScale(FVector2D(5.0f, 5.0f))
-		.OnClicked(this, &SMyGenericCompoundWidget::ButtonClicked)
-		.ToolTipText(this->buttonLabel.FromString("Tool Tip!"))
-		];
+	.VAlign(VAlign_Bottom)
+	.HAlign(HAlign_Right)
+					[
+					SNew(SButton)
+					.VAlign(VAlign_Center)
+					.HAlign(HAlign_Center)
+					.OnHovered_Raw(this, &SMyGenericCompoundWidget::ButtonHovered)
+					.ButtonColorAndOpacity(FSlateColor(FLinearColor(0.1f, 0.5f, 0.5f, 1.0f)))
+					.Text(this->buttonLabel.FromString("Slate Button")).DesiredSizeScale(FVector2D(5.0f, 5.0f))
+					.OnClicked(this, &SMyGenericCompoundWidget::ButtonClicked)
+					.ToolTipText(this->buttonLabel.FromString("Tool Tip!"))
+					];
+
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 FReply SMyGenericCompoundWidget::ButtonClicked() {
-	if (GEngine != NULL) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("You clicked a button!"));
-	}
 
-	// prevents the event from bubbling up the parent widget
+	if (GEngine != NULL)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Button CLICKER!"));
+
+	OnClicked.ExecuteIfBound();
+
 	return FReply::Handled();
 }
 
 void SMyGenericCompoundWidget::ButtonHovered() {
-	if (GEngine != NULL) {
+
+	if (GEngine != NULL) 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Hovering"));
-	}
+
 }

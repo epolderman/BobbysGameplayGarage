@@ -8,6 +8,7 @@
 #include "MainHUD.generated.h"
 
 class SMyGenericCompoundWidget;
+DECLARE_DELEGATE(hudFunctionCall)
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainHUD : public AHUD
@@ -20,19 +21,22 @@ public:
 	/** Primary draw call for the HUD */
 	// virtual void DrawHUD() override;
 
+	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
+	// void BeginPlay();
+
+	void getPlayerHealth();
+
+	const FReply ButtonClick();
+
 protected:
 
 	/** Cross hair asset pointer */
 	// UTexture2D* CrosshairTex;
-		// ++ Reference to an SCompoundWidget, TSharedPtr adds to the refcount of MyUIWidget
-	// MyUIWidget will not self-destruct as long as refcount > 0. refcount will be (refcout-1) if HUD is destroyed.
+
+	// HUD owns widget, adds to refcount keeping it alive
 	TSharedPtr<SMyGenericCompoundWidget> MyUIWidget;
 
-	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
-	// void BeginPlay();
-	void getPlayerHealth();
-	FReply handleButton();
-
 private:
-	int playerHealth = 55;
+	const int PLAYER_HEALTH = 55;
+	
 };

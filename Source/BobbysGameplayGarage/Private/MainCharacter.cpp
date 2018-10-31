@@ -31,6 +31,7 @@ AMainCharacter::AMainCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	// Create a camera boom (pulls in towards the player if there is a collision)
+
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = TrailingCameraDistance; 
