@@ -9,17 +9,13 @@
 
 class BOBBYSGAMEPLAYGARAGE_API SMyGenericCompoundWidget : public SCompoundWidget
 {
-public:
+
 	SLATE_BEGIN_ARGS(SMyGenericCompoundWidget)
 	{}
-
-	// SLATE_EVENT(hudFunctionCall, OnClicked)
-
-	// slate arguments (type, name of type) => passing args to widgets constructing function
-	SLATE_ARGUMENT(class AMainHUD*, hudController)
-	// SLATE_ARGUMENT(hudFunctionCall, OnClicked)
+	SLATE_ARGUMENT(TWeakObjectPtr<class AMainHUD>, HUD)
 	SLATE_END_ARGS()
 
+public:
 	void Construct(const FArguments& InArgs);
 
 	FReply ButtonClicked();
@@ -29,6 +25,4 @@ private:
 	TWeakObjectPtr<class AMainHUD> HUD;
 
 	FText buttonLabel;
-
-	hudFunctionCall OnClicked;
 };

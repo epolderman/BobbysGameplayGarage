@@ -8,7 +8,8 @@
 #include "MainHUD.generated.h"
 
 class SMyGenericCompoundWidget;
-DECLARE_DELEGATE(hudFunctionCall)
+
+DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainHUD : public AHUD
@@ -25,8 +26,7 @@ public:
 	// void BeginPlay();
 
 	void getPlayerHealth();
-
-	const FReply ButtonClick();
+	FReply ButtonClick();
 
 protected:
 

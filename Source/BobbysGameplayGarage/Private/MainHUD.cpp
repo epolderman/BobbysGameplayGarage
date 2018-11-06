@@ -8,8 +8,11 @@
 
 AMainHUD::AMainHUD()
 {
+		
+	//TODO: Look into this construction function
+
 	// Create a SMyUIWidget on heap, our MyUIWidget shared pointer provides handle to object
-	MyUIWidget = SNew(SMyGenericCompoundWidget);
+	MyUIWidget = SNew(SMyGenericCompoundWidget).HUD(this);
 	// MyUIWidget = SNew(SMyGenericCompoundWidget).OwnerHUD(this);
 
 	// Pass our viewport a weak ptr to our widget
@@ -19,6 +22,7 @@ AMainHUD::AMainHUD()
 			SNew(SWeakWidget)
 			.PossiblyNullContent(MyUIWidget.ToSharedRef())
 		);
+
 
 	MyUIWidget->SetVisibility(EVisibility::Visible);
 }
@@ -31,7 +35,7 @@ void AMainHUD::getPlayerHealth() {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, pHealth);
 }
 
-const FReply AMainHUD::ButtonClick() {
+FReply AMainHUD::ButtonClick() {
 
 	if (GEngine != NULL)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HUD: You clicked a button!"));

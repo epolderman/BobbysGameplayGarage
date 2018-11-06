@@ -10,15 +10,8 @@
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SMyGenericCompoundWidget::Construct(const FArguments& InArgs)
 {
-	
 	// pass in our arguments
-	HUD = InArgs._hudController;
-	/*OnClicked = InArgs._OnClicked;*/
-
-	// OnClicked.BindRaw(HUD.Get(), &AMainHUD::ButtonClick)
-
-	// OnClicked.BindRaw(HUD.Get(), &AMainHUD::ButtonClick);
-	// OnClicked.CreateRaw(HUD, &AMainHUD::ButtonClick);
+	HUD = InArgs._HUD;
 
 	ChildSlot
 	.VAlign(VAlign_Bottom)
@@ -39,10 +32,10 @@ END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 FReply SMyGenericCompoundWidget::ButtonClicked() {
 
-	if (GEngine != NULL)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Button CLICKER!"));
+	if (HUD != nullptr)
+		HUD->ButtonClick();
 
-	OnClicked.ExecuteIfBound();
+	// OnClicked.ExecuteIfBound();
 
 	return FReply::Handled();
 }
