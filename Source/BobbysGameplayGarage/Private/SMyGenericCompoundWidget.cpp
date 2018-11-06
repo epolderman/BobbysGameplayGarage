@@ -39,7 +39,7 @@ FReply SMyGenericCompoundWidget::ButtonClicked() {
 
 	return FReply::Handled();
 }
-
+// TODO: Add functionality to style differently on hover
 void SMyGenericCompoundWidget::ButtonHovered() {
 
 	if (GEngine != NULL) 

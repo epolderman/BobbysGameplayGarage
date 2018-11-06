@@ -8,7 +8,6 @@
 #include "MainHUD.generated.h"
 
 class SMyGenericCompoundWidget;
-
 DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()

@@ -17,10 +17,9 @@ AMainHUD::AMainHUD()
 
 	// Pass our viewport a weak ptr to our widget
 	// View port's weak ptr will not give Viewport ownership of Widget
-	if (GEngine != NULL) 
+	if (GEngine != nullptr)
 		GEngine->GameViewport->AddViewportWidgetContent(
-			SNew(SWeakWidget)
-			.PossiblyNullContent(MyUIWidget.ToSharedRef())
+			MyUIWidget.ToSharedRef()
 		);
 
 
@@ -31,13 +30,13 @@ void AMainHUD::getPlayerHealth() {
 
 	const FString pHealth = " " + PLAYER_HEALTH;
 
-	if (GEngine != NULL) 
+	if (GEngine != nullptr)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, pHealth);
 }
 
 FReply AMainHUD::ButtonClick() {
 
-	if (GEngine != NULL)
+	if (GEngine != nullptr)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HUD: You clicked a button!"));
 
 	// prevents the event from bubbling up the parent widget
