@@ -35,8 +35,6 @@ FReply SMyGenericCompoundWidget::ButtonClicked() {
 	if (HUD != nullptr)
 		HUD->ButtonClick();
 
-	// OnClicked.ExecuteIfBound();
-
 	return FReply::Handled();
 }
 // TODO: Add functionality to style differently on hover

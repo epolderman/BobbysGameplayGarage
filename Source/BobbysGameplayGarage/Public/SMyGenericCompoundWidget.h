@@ -10,8 +10,7 @@
 class BOBBYSGAMEPLAYGARAGE_API SMyGenericCompoundWidget : public SCompoundWidget
 {
 
-	SLATE_BEGIN_ARGS(SMyGenericCompoundWidget)
-	{}
+	SLATE_BEGIN_ARGS(SMyGenericCompoundWidget){}
 	SLATE_ARGUMENT(class AMainHUD*, HUD)
 	SLATE_END_ARGS()
 

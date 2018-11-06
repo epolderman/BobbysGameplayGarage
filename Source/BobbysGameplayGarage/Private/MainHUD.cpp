@@ -11,12 +11,11 @@ AMainHUD::AMainHUD()
 		
 	//TODO: Look into this construction function
 
-	// Create a SMyUIWidget on heap, our MyUIWidget shared pointer provides handle to object
+	// Create a SMyGenericCompoundWidget on heap, 
+	// our MyUIWidget shared pointer provides handle to object
 	MyUIWidget = SNew(SMyGenericCompoundWidget).HUD(this);
 	// MyUIWidget = SNew(SMyGenericCompoundWidget).OwnerHUD(this);
 
-	// Pass our viewport a weak ptr to our widget
-	// View port's weak ptr will not give Viewport ownership of Widget
 	if (GEngine != nullptr)
 		GEngine->GameViewport->AddViewportWidgetContent(
 			MyUIWidget.ToSharedRef()
