@@ -4,7 +4,7 @@
 #include "Engine.h" 
 #include <Attribute.h>
 #include "Widgets/SWeakWidget.h" 
-#include "SMyGenericCompoundWidget.h"
+#include "SHealthController.h"
 
 AMainHUD::AMainHUD()
 {
@@ -13,7 +13,7 @@ AMainHUD::AMainHUD()
 
 	// Create a SMyGenericCompoundWidget on heap, 
 	// our MyUIWidget shared pointer provides handle to object
-	MyUIWidget = SNew(SMyGenericCompoundWidget).HUD(this);
+	MyUIWidget = SNew(SHealthController).HUD(this);
 	// MyUIWidget = SNew(SMyGenericCompoundWidget).OwnerHUD(this);
 
 	if (GEngine != nullptr)

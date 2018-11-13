@@ -7,7 +7,7 @@
 #include <DeclarativeSyntaxSupport.h>
 #include "MainHUD.generated.h"
 
-class SMyGenericCompoundWidget;
+class SHealthController;
 DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()
@@ -33,7 +33,7 @@ protected:
 	// UTexture2D* CrosshairTex;
 
 	// HUD owns widget, adds to refcount keeping it alive
-	TSharedPtr<SMyGenericCompoundWidget> MyUIWidget;
+	TSharedPtr<SHealthController> MyUIWidget;
 
 private:
 	const int PLAYER_HEALTH = 55;

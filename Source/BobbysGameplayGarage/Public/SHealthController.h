@@ -4,24 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "Widgets/SCompoundWidget.h"
-#include "MainHUD.h"
+class AMainHUD;
 
-
-class BOBBYSGAMEPLAYGARAGE_API SMyGenericCompoundWidget : public SCompoundWidget
+class BOBBYSGAMEPLAYGARAGE_API SHealthController : public SCompoundWidget
 {
-
-	SLATE_BEGIN_ARGS(SMyGenericCompoundWidget){}
+public:
+	SLATE_BEGIN_ARGS(SHealthController)
+	{}
 	SLATE_ARGUMENT(class AMainHUD*, HUD)
 	SLATE_END_ARGS()
-
 public:
 	void Construct(const FArguments& InArgs);
-
 	FReply ButtonClicked();
-
 	void ButtonHovered();
 private:
 	TWeakObjectPtr<class AMainHUD> HUD;
-
 	FText buttonLabel;
 };
