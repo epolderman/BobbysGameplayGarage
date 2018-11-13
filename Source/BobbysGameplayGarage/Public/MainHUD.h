@@ -24,7 +24,7 @@ public:
 	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
 	// void BeginPlay();
 
-	void getPlayerHealth();
+	float getPlayerHealth() const;
 	FReply ButtonClick();
 
 protected:
@@ -36,6 +36,5 @@ protected:
 	TSharedPtr<SHealthController> MyUIWidget;
 
 private:
-	const int PLAYER_HEALTH = 55;
 	
 };

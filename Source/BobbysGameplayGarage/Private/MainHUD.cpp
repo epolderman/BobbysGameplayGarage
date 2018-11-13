@@ -5,6 +5,7 @@
 #include <Attribute.h>
 #include "Widgets/SWeakWidget.h" 
 #include "SHealthController.h"
+#include "MainCharacter.h"
 
 AMainHUD::AMainHUD()
 {
@@ -25,18 +26,22 @@ AMainHUD::AMainHUD()
 	MyUIWidget->SetVisibility(EVisibility::Visible);
 }
 // TODO: Test polling from a widget, more performant solution according to UE4
-void AMainHUD::getPlayerHealth() {
+float AMainHUD::getPlayerHealth() const{
 
-	const FString pHealth = " " + PLAYER_HEALTH;
+	const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetCharacter());
+	if (character != nullptr) {
+		return character->getPlayerHealth();
+	}
 
-	if (GEngine != nullptr)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, pHealth);
+	return 0.0f;
 }
 
 FReply AMainHUD::ButtonClick() {
 
-	if (GEngine != nullptr)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HUD: You clicked a button!"));
+	/*if (GEngine != nullptr)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HUD: Player Health: "));*/
+	UE_LOG(LogClass, Log, TEXT("Player Health: %f"), this->getPlayerHealth());
+
 
 	// prevents the event from bubbling up the parent widget
 	return FReply::Handled();

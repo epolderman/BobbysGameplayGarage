@@ -42,7 +42,7 @@ AMainCharacter::AMainCharacter()
 	TrailingCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); 
 	TrailingCamera->bUsePawnControlRotation = false; 
 	
-
+	fPlayerHealth = 100.0f;
 	bIsFirstPersonPerspectiveEnabled = false;
 	// UE_LOG(LogClass, Log, TEXT("Hello There!!...!"));
 }
@@ -137,6 +137,10 @@ void AMainCharacter::MoveRight(float Value)
 		const FVector Direction = FRotationMatrix(this->getCharacterRotation()).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, Value);
 	}
+}
+
+bool AMainCharacter::getPlayerHealth() const {
+	return this->fPlayerHealth;
 }
 
 

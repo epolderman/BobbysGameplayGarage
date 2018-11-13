@@ -15,6 +15,8 @@ private:
 	// Default is 3rd Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
+	float fPlayerHealth; 
+
 	// In 3rd Person Perspective
 	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
 		float TrailingCameraDistance = 300.0f;
@@ -48,6 +50,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void PostInitializeComponents() override;
+
+	bool getPlayerHealth() const;
 
 	// Camera 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
