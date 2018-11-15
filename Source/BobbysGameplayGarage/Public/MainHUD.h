@@ -24,7 +24,7 @@ public:
 	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
 	// void BeginPlay();
 
-	float getPlayerHealth() const;
+	int32 getPlayerHealth() const;
 	FReply ButtonClick();
 
 protected:

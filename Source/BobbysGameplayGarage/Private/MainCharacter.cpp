@@ -42,7 +42,7 @@ AMainCharacter::AMainCharacter()
 	TrailingCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); 
 	TrailingCamera->bUsePawnControlRotation = false; 
 	
-	fPlayerHealth = 100.0f;
+	iPlayerHealth = 100;
 	bIsFirstPersonPerspectiveEnabled = false;
 	// UE_LOG(LogClass, Log, TEXT("Hello There!!...!"));
 }
@@ -139,8 +139,8 @@ void AMainCharacter::MoveRight(float Value)
 	}
 }
 
-bool AMainCharacter::getPlayerHealth() const {
-	return this->fPlayerHealth;
+int32 AMainCharacter::getPlayerHealth() const {
+	return this->iPlayerHealth;
 }
 
 

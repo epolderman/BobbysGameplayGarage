@@ -15,7 +15,7 @@ private:
 	// Default is 3rd Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
-	float fPlayerHealth; 
+	int32 iPlayerHealth; 
 
 	// In 3rd Person Perspective
 	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
@@ -51,7 +51,7 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	bool getPlayerHealth() const;
+	int32 getPlayerHealth() const;
 
 	// Camera 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")

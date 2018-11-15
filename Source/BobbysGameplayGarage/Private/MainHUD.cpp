@@ -26,23 +26,20 @@ AMainHUD::AMainHUD()
 	MyUIWidget->SetVisibility(EVisibility::Visible);
 }
 // TODO: Test polling from a widget, more performant solution according to UE4
-float AMainHUD::getPlayerHealth() const{
+int32 AMainHUD::getPlayerHealth() const{
 
 	const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetCharacter());
 	if (character != nullptr) {
 		return character->getPlayerHealth();
 	}
 
-	return 0.0f;
+	return 0;
 }
 
 FReply AMainHUD::ButtonClick() {
-
-	/*if (GEngine != nullptr)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HUD: Player Health: "));*/
-	UE_LOG(LogClass, Log, TEXT("Player Health: %f"), this->getPlayerHealth());
-
-
+	
+	FString TheFloatStr = FString::SanitizeFloat(this->getPlayerHealth());
+	UE_LOG(LogClass, Log, TEXT("Player Health: %s"), *TheFloatStr);
 	// prevents the event from bubbling up the parent widget
 	return FReply::Handled();
 }
