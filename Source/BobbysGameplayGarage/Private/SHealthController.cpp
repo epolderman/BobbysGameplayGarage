@@ -8,6 +8,9 @@
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SHealthController::Construct(const FArguments& InArgs)
 {
+	// make horizontal box, fill according to health, rotate box around the up vector
+	// we want to simulate a DOOM FPS UI
+
 	HUD = InArgs._HUD;
 	ChildSlot
 		.VAlign(VAlign_Bottom)

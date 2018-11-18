@@ -31,7 +31,6 @@ private:
 		float BaseLookUpRate = 45.0f;
 
 protected:
-
 	void MoveForward(float Value);
 
 	void MoveRight(float Value);
