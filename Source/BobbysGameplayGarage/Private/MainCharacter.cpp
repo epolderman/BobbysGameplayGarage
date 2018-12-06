@@ -101,7 +101,7 @@ void AMainCharacter::ToggleFirstPersonPerspective()
 		if (!bIsFirstPersonPerspectiveEnabled) {
 			CameraBoom->TargetArmLength = 0.0f;
 			// Position the camera
-			TrailingCamera->RelativeLocation = FVector(0, 0, BaseEyeHeight); 
+			TrailingCamera->RelativeLocation = FVector(0, 10.0f, BaseEyeHeight); 
 			bIsFirstPersonPerspectiveEnabled = true;
 			return;
 		}
