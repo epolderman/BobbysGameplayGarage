@@ -22,22 +22,27 @@ void SHealthController::Construct(const FArguments& InArgs)
 
 	ChildSlot
 		[
-			SNew(SHorizontalBox)
-			// Default settings example
-		+ SHorizontalBox::Slot().VAlign(VAlign_Center)
-		.HAlign(HAlign_Center).Padding(5).FillWidth(10)
+		SNew(SScrollBox)
+		+ SScrollBox::Slot().Padding(10, 5).VAlign(VAlign_Bottom).HAlign(HAlign_Right)
 		[
-			SNew(STextBlock).ShadowOffset(HeadingShadowOffset).Font(LargeLayoutFont).Text(LOCTEXT("Some random Text", "Default Settings (AutoSize):"))
+			SNew(SHorizontalBox)
+			+ SHorizontalBox::Slot()
+		.AutoWidth()
+		[
+			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel01", "Default.\n Slot is auto-sized."))
 		]
-
-		/*SNew(SButton)
-		.VAlign(VAlign_Center)
-		.HAlign(HAlign_Center)
-		.OnHovered_Raw(this, &SHealthController::ButtonHovered)
-		.ButtonColorAndOpacity(FSlateColor(FLinearColor(0.1f, 0.5f, 0.5f, 1.0f)))
-		.Text(this->buttonLabel.FromString("Slate Button")).DesiredSizeScale(FVector2D(5.0f, 5.0f))
-		.OnClicked(this, &SHealthController::ButtonClicked)
-		.ToolTipText(this->buttonLabel.FromString("Tool Tip!"))*/
+	+ SHorizontalBox::Slot()
+		.AutoWidth()
+		[
+			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel02", "Slots are packed tightly."))
+		]
+	+ SHorizontalBox::Slot()
+		.AutoWidth()
+		[
+			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel03", "Alignment within the slot\n does not matter."))
+		]
+		]
+	
 		];
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
@@ -54,7 +59,6 @@ void SHealthController::ButtonHovered() {
 
 	if (GEngine != nullptr)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Hovering"));
-
 }
 
 #undef LOCTEXT_NAMESPACE
