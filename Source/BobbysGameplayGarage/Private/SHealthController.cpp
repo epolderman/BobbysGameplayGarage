@@ -22,24 +22,21 @@ void SHealthController::Construct(const FArguments& InArgs)
 
 	ChildSlot
 		[
-		SNew(SScrollBox)
-		+ SScrollBox::Slot().Padding(10, 5).VAlign(VAlign_Bottom).HAlign(HAlign_Right)
+		SNew(SVerticalBox)
+		+ SVerticalBox::Slot().VAlign(VAlign_Bottom).HAlign(HAlign_Right).Padding(10)
 		[
 			SNew(SHorizontalBox)
-			+ SHorizontalBox::Slot()
-		.AutoWidth()
+			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel01", "Default.\n Slot is auto-sized."))
+			SNew(SButton).Text(LOCTEXT("One", "Default.\n Health Values"))
 		]
-	+ SHorizontalBox::Slot()
-		.AutoWidth()
+			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel02", "Slots are packed tightly."))
+			SNew(SButton).Text(LOCTEXT("Two", " Mana Values "))
 		]
-	+ SHorizontalBox::Slot()
-		.AutoWidth()
+			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("ExampleLayout-TextLabel03", "Alignment within the slot\n does not matter."))
+			SNew(SButton).Text(LOCTEXT("Three", " Content, Content, Content"))
 		]
 		]
 	
