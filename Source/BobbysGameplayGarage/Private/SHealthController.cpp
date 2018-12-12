@@ -22,9 +22,14 @@ void SHealthController::Construct(const FArguments& InArgs)
 
 	ChildSlot
 		[
-		SNew(SVerticalBox)
-		+ SVerticalBox::Slot().VAlign(VAlign_Bottom).HAlign(HAlign_Right).Padding(10)
+		SNew(SOverlay)
+		+ SOverlay::Slot().VAlign(VAlign_Bottom).HAlign(HAlign_Right).Padding(10)
 		[
+		
+			SNew(SBorder)
+			.Padding(FMargin(3)).BorderImage(&brush).ColorAndOpacity(FLinearColor(0, 0, 0, 0.7f))
+		[
+		
 			SNew(SHorizontalBox)
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
@@ -39,7 +44,7 @@ void SHealthController::Construct(const FArguments& InArgs)
 			SNew(SButton).Text(LOCTEXT("Three", " Content, Content, Content"))
 		]
 		]
-	
+		]
 		];
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION

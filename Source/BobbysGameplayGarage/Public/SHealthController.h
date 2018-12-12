@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Widgets/SCompoundWidget.h"
+#include "SlateGameResources.h"
 class AMainHUD;
+
 
 class BOBBYSGAMEPLAYGARAGE_API SHealthController : public SCompoundWidget
 {
@@ -20,4 +22,5 @@ public:
 private:
 	TWeakObjectPtr<class AMainHUD> HUD;
 	FText buttonLabel;
+	FSlateColorBrush brush = FSlateColorBrush(FLinearColor::Yellow);
 };
