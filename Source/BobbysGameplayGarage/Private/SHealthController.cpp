@@ -27,13 +27,13 @@ void SHealthController::Construct(const FArguments& InArgs)
 		[
 		
 			SNew(SBorder)
-			.Padding(FMargin(3)).BorderImage(&brush).ColorAndOpacity(FLinearColor(0, 0, 0, 0.7f))
+			.Padding(FMargin(3)).BorderImage(&brush)
 		[
 		
 			SNew(SHorizontalBox)
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("One", "Default.\n Health Values"))
+			SNew(SButton).ButtonStyle(FCoreStyle::Get(), "NoBorder").Text(LOCTEXT("One", "Default.\n Health Values"))
 		]
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
