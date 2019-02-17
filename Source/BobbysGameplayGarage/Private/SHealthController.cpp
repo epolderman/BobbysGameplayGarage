@@ -70,18 +70,8 @@ You can call GetWorld() in UGameViewport to get the World it's related to at the
 FReply SHealthController::Log() {
 
 	if (GEngine != nullptr) {
-		TArray<AActor*> FoundActors;
-		UGameplayStatics::GetAllActorsOfClass(GEngine->GetWorld(), AActor::StaticClass(), FoundActors);
-		/*const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(GEngine->GetWorld(), 0));*/
 		APlayerController * MyPc = UGameplayStatics::GetPlayerController(GEngine->GetWorld(), 0);
 		
-		//UE_LOG(LogClass, Log, TEXT("Name: %i"), FoundActors.Num());
-		//for (int32 i = 0; i < FoundActors.Num(); i++) {
-		//UE_LOG(LogClass, Log, TEXT("Name: %s"), *FoundActors[i]->GetName());
-		//}
-
-
-
 		if (MyPc != nullptr) {
 			/*FString TheFloatStr = FString::SanitizeFloat(character->getPlayerHealth());*/
 			UE_LOG(LogClass, Log, TEXT("We have a character instance"));
