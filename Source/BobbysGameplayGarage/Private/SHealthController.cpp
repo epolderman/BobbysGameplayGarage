@@ -17,13 +17,19 @@ void SHealthController::Construct(const FArguments& InArgs)
 	HUD = InArgs._HUD;
 	const FVector2D HeadingShadowOffset(2, 2);
 
+
+	// is this how we set up fonts?
 	FSlateFontInfo LargeLayoutFont = FCoreStyle::GetDefaultFontStyle("Regular", 16);
 	FSlateFontInfo SmallLayoutFont = FCoreStyle::GetDefaultFontStyle("Regular", 10);
 
+	UE_LOG(LogClass, Log, TEXT("Constructing SHealthController"));
+	UE_LOG(LogClass, Log, TEXT("Logging Hud: %s"), *HUD->LogCreation());
+
+	// is this how we set up styles?
 	ChildSlot
 		[
-		SNew(SOverlay)
-		+ SOverlay::Slot().VAlign(VAlign_Bottom).HAlign(HAlign_Right).Padding(10)
+			SNew(SOverlay)
+			+ SOverlay::Slot().VAlign(VAlign_Bottom).HAlign(HAlign_Right).Padding(10)
 		[
 		
 			SNew(SBorder)
@@ -37,7 +43,8 @@ void SHealthController::Construct(const FArguments& InArgs)
 		]
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("Two", " Mana Values "))
+		
+			SNew(SButton).Text(LOCTEXT("two", " Content, Content, Content"))
 		]
 			+ SHorizontalBox::Slot().AutoWidth()
 		[

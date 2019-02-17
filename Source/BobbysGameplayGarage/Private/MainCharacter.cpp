@@ -13,6 +13,8 @@
 // Sets default values
 AMainCharacter::AMainCharacter()
 {
+	UE_LOG(LogClass, Log, TEXT("Constructing AMainCharacter"));
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -42,7 +44,7 @@ AMainCharacter::AMainCharacter()
 	TrailingCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); 
 	TrailingCamera->bUsePawnControlRotation = false; 
 	
-	iPlayerHealth = 100;
+	iPlayerHealth = 50;
 	bIsFirstPersonPerspectiveEnabled = false;
 	// UE_LOG(LogClass, Log, TEXT("Hello There!!...!"));
 }
@@ -139,7 +141,7 @@ void AMainCharacter::MoveRight(float Value)
 	}
 }
 
-int32 AMainCharacter::getPlayerHealth() const {
+float AMainCharacter::getPlayerHealth() const {
 	return this->iPlayerHealth;
 }
 

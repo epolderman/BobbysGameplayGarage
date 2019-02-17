@@ -14,7 +14,7 @@ public:
 	SLATE_BEGIN_ARGS(SHealthController)
 	{}
 	SLATE_ARGUMENT(class AMainHUD*, HUD)
-	SLATE_END_ARGS()
+		SLATE_END_ARGS()
 public:
 	void Construct(const FArguments& InArgs);
 	FReply ButtonClicked();

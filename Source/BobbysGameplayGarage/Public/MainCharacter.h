@@ -50,7 +50,7 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	int32 getPlayerHealth() const;
+	float getPlayerHealth() const;
 
 	// Camera 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
