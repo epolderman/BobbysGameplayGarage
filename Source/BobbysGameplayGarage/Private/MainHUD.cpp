@@ -25,47 +25,22 @@ AMainHUD::AMainHUD()
 	MyUIWidget->SetVisibility(EVisibility::Visible);
 }
 
-float AMainHUD::OnGetHPPercent() const {
-	const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetCharacter());
-	if (character != nullptr) 
-	return character->getPlayerHealth();
 
-	return 0.0f;
-}
-
-
-FString AMainHUD::getPlayerHealth() const{
-
-	/*const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetCharacter());
-	if (character != nullptr) {
-		return FString::SanitizeFloat(character->getPlayerHealth());
-	}
-	FString nonValidHealth = FString::SanitizeFloat(0.0f);
-	return nonValidHealth;*/
-	return FString("hello");
-}
-
-FReply AMainHUD::ButtonClick() {
-	
-	//const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
-	//if (character != nullptr) {
-	//	FString TheFloatStr = FString::SanitizeFloat(character->getPlayerHealth());
-	//	UE_LOG(LogClass, Log, TEXT("Player Health: %s"), *TheFloatStr);
-	//}
-	// prevents the event from bubbling up the parent widget
-	return FReply::Handled();
-}
-
-FString AMainHUD::LogCreation() const {
+FReply AMainHUD::LogCreation() const {
 
 	auto character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
 	if (character != nullptr) {
-		/*FString TheFloatStr = FString::SanitizeFloat(character->getPlayerHealth());*/
 		UE_LOG(LogClass, Log, TEXT("We have a character instance"));
+		// character->PlayerHealth.AddDynamic(this, &AMainHUD::pollHealth);
 	}
 	else {
 		UE_LOG(LogClass, Log, TEXT("character instance in null"));
 	}
-	return FString("LogCreation()");
+
+	return FReply::Handled();
 }
+
+//void AMainHUD::pollHealth(float playerHealth) {
+//	UE_LOG(LogClass, Log, TEXT("Player Health: %f"), playerHealth);
+//}

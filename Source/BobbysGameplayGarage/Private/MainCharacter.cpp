@@ -128,6 +128,11 @@ void AMainCharacter::MoveForward(float Value)
 		const FVector Direction = FRotationMatrix(this->getCharacterRotation()).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
+
+	// test on delegates
+	/*this->iPlayerHealth = this->iPlayerHealth - 2.0f;
+	PlayerHealth.Broadcast(this->iPlayerHealth);*/
+
 }
 
 void AMainCharacter::MoveRight(float Value)
@@ -140,9 +145,3 @@ void AMainCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
-
-float AMainCharacter::getPlayerHealth() const {
-	return this->iPlayerHealth;
-}
-
-

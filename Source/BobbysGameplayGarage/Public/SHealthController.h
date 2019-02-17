@@ -14,11 +14,11 @@ public:
 	SLATE_BEGIN_ARGS(SHealthController)
 	{}
 	SLATE_ARGUMENT(class AMainHUD*, HUD)
-		SLATE_END_ARGS()
+	//SLATE_EVENT(FOnClicked, OnClicked)
+	SLATE_END_ARGS()
 public:
 	void Construct(const FArguments& InArgs);
-	FReply ButtonClicked();
-	void ButtonHovered();
+	FReply Log();
 private:
 	TWeakObjectPtr<class AMainHUD> HUD;
 	FText buttonLabel;

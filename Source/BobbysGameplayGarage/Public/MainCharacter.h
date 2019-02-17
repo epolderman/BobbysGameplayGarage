@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+// DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPlayerHealth, float, playerHealth);
+
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
 {
@@ -15,7 +17,7 @@ private:
 	// Default is 3rd Person
 	bool bIsFirstPersonPerspectiveEnabled;
 
-	int32 iPlayerHealth; 
+	float iPlayerHealth; 
 
 	// In 3rd Person Perspective
 	UPROPERTY(EditDefaultsOnly, Category = "Trailing Camera")
@@ -50,8 +52,6 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	float getPlayerHealth() const;
-
 	// Camera 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class USpringArmComponent* CameraBoom;
@@ -59,4 +59,7 @@ public:
 	// Trailing Camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class UCameraComponent* TrailingCamera;
+
+	//UPROPERTY(BlueprintAssignable, Category = "Event Dispatchers")
+	//FPlayerHealth PlayerHealth;
 };

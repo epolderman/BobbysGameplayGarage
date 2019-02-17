@@ -24,10 +24,10 @@ public:
 	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
 	// void BeginPlay();
 
-	FString getPlayerHealth() const;
-	FReply ButtonClick();
-	float OnGetHPPercent() const;
-	FString LogCreation() const;
+	FReply LogCreation() const;
+
+	//UFUNCTION()
+	//void pollHealth(float playerHealth);
 
 protected:
 
