@@ -21,6 +21,7 @@ void SHealthController::Construct(const FArguments& InArgs)
 	HUD = InArgs._HUD;
 	const FVector2D HeadingShadowOffset(2, 2);
 
+	// logdele.BindSP(HUD, &AMainHUD::LogCreation);
 
 	// is this how we set up fonts?
 	FSlateFontInfo LargeLayoutFont = FCoreStyle::GetDefaultFontStyle("Regular", 16);

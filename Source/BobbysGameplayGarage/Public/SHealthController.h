@@ -7,6 +7,7 @@
 #include "SlateGameResources.h"
 class AMainHUD;
 
+//DECLARE_DELEGATE_RetVal(FOnClicked, myDelegate)
 
 class BOBBYSGAMEPLAYGARAGE_API SHealthController : public SCompoundWidget
 {
@@ -23,4 +24,5 @@ private:
 	TWeakObjectPtr<class AMainHUD> HUD;
 	FText buttonLabel;
 	FSlateColorBrush brush = FSlateColorBrush(FLinearColor::Yellow);
+	// myDelegate logdele;
 };

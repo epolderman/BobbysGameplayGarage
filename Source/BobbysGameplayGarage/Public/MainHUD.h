@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
 #include <DeclarativeSyntaxSupport.h>
+#include <SlateDelegates.h>
 #include "MainHUD.generated.h"
 
 class SHealthController;
-DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
+// DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainHUD : public AHUD
@@ -24,6 +25,7 @@ public:
 	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
 	// void BeginPlay();
 
+	// UFUNCTION()
 	FReply LogCreation() const;
 
 	//UFUNCTION()
