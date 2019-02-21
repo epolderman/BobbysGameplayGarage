@@ -25,6 +25,7 @@ AMainHUD::AMainHUD()
 		);
 
 	MyUIWidget->SetVisibility(EVisibility::Visible);
+	
 }
 
 
@@ -42,7 +43,3 @@ FReply AMainHUD::LogCreation() const {
 
 	return FReply::Handled();
 }
-
-//void AMainHUD::pollHealth(float playerHealth) {
-//	UE_LOG(LogClass, Log, TEXT("Player Health: %f"), playerHealth);
-//}

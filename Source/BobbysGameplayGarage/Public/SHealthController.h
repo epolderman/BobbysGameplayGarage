@@ -7,7 +7,8 @@
 #include "SlateGameResources.h"
 class AMainHUD;
 
-//DECLARE_DELEGATE_RetVal(FOnClicked, myDelegate)
+// delegate with no param / return value
+DECLARE_DELEGATE(FHealthClick)
 
 class BOBBYSGAMEPLAYGARAGE_API SHealthController : public SCompoundWidget
 {
@@ -15,7 +16,7 @@ public:
 	SLATE_BEGIN_ARGS(SHealthController)
 	{}
 	SLATE_ARGUMENT(class AMainHUD*, HUD)
-	//SLATE_EVENT(FOnClicked, OnClicked)
+	SLATE_EVENT(FHealthClick, OnClicked)
 	SLATE_END_ARGS()
 public:
 	void Construct(const FArguments& InArgs);
@@ -24,5 +25,7 @@ private:
 	TWeakObjectPtr<class AMainHUD> HUD;
 	FText buttonLabel;
 	FSlateColorBrush brush = FSlateColorBrush(FLinearColor::Yellow);
-	// myDelegate logdele;
+	// slate data
+	FHealthClick OnClicked;
+	FReply OnButtonClick();
 };

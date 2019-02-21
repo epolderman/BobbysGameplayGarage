@@ -6,9 +6,11 @@
 #include "GameFramework/HUD.h"
 #include <DeclarativeSyntaxSupport.h>
 #include <SlateDelegates.h>
+#include "SHealthController.h"
 #include "MainHUD.generated.h"
 
-class SHealthController;
+
+
 // DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()
@@ -38,6 +40,7 @@ protected:
 
 	// HUD owns widget, adds to refcount keeping it alive
 	TSharedPtr<SHealthController> MyUIWidget;
+	// FHealthClick Logger;
 
 private:
 	

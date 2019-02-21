@@ -19,9 +19,8 @@ void SHealthController::Construct(const FArguments& InArgs)
 	// we want to simulate a DOOM FPS UI
 
 	HUD = InArgs._HUD;
+	OnClicked = InArgs._OnClicked;
 	const FVector2D HeadingShadowOffset(2, 2);
-
-	// logdele.BindSP(HUD, &AMainHUD::LogCreation);
 
 	// is this how we set up fonts?
 	FSlateFontInfo LargeLayoutFont = FCoreStyle::GetDefaultFontStyle("Regular", 16);
@@ -52,7 +51,7 @@ void SHealthController::Construct(const FArguments& InArgs)
 		]
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
-			SNew(SButton).Text(LOCTEXT("Three", " Content, Content, Content"))
+			SNew(SButton).Text(LOCTEXT("Three", " Delegate Click")).OnClicked_Raw(this, &SHealthController::OnButtonClick)
 		]
 		]
 		]
@@ -86,6 +85,19 @@ FReply SHealthController::Log() {
 		UE_LOG(LogClass, Log, TEXT("gengine instance in null"));
 	}
 	
+
+	return FReply::Handled();
+}
+
+FReply SHealthController::OnButtonClick() 
+{
+
+	UE_LOG(LogClass, Log, TEXT("SHealthController::OnButtonClick"));
+	if (OnClicked.IsBound() == true)
+	{
+		UE_LOG(LogClass, Log, TEXT("Broadcasting Delegate"));
+		OnClicked.Execute();
+	}
 
 	return FReply::Handled();
 }
