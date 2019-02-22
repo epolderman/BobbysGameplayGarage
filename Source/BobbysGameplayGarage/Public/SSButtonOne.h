@@ -19,7 +19,9 @@ public:
 
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
+	// delegate object
 	FHealthClick OnClicked;
+	// function to run the delegate
 	FReply OnButtonClick();
 	FSlateColorBrush brush = FSlateColorBrush(FLinearColor::Yellow);
 };

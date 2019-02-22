@@ -17,7 +17,7 @@ AMainHUD::AMainHUD()
 
 	// Create a SMyGenericCompoundWidget on heap, 
 	// our MyUIWidget shared pointer provides handle to object
-	MyUIWidget = SNew(SHealthController).HUD(this);
+	// MyUIWidget = SNew(SHealthController).HUD(this);
 	OnClicked.BindUObject(this, &AMainHUD::Log);
 	ASAPButton = SNew(SSButtonOne).OnClicked(OnClicked);
 
