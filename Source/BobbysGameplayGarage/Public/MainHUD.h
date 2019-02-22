@@ -7,15 +7,14 @@
 #include <DeclarativeSyntaxSupport.h>
 #include <SlateDelegates.h>
 #include "SHealthController.h"
+#include "SSButtonOne.h"
 #include "MainHUD.generated.h"
 
-
-
-// DECLARE_DELEGATE_RetVal(FReply, hudFunctionCall)
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainHUD : public AHUD
 {
+
 	GENERATED_BODY()
 public:
 
@@ -29,7 +28,7 @@ public:
 
 	// UFUNCTION()
 	FReply LogCreation() const;
-
+	void Log();
 	//UFUNCTION()
 	//void pollHealth(float playerHealth);
 
@@ -40,7 +39,8 @@ protected:
 
 	// HUD owns widget, adds to refcount keeping it alive
 	TSharedPtr<SHealthController> MyUIWidget;
-	// FHealthClick Logger;
+	FHealthClick OnClicked;
+	TSharedPtr<SSButtonOne> ASAPButton;
 
 private:
 	

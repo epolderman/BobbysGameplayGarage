@@ -18,13 +18,16 @@ AMainHUD::AMainHUD()
 	// Create a SMyGenericCompoundWidget on heap, 
 	// our MyUIWidget shared pointer provides handle to object
 	MyUIWidget = SNew(SHealthController).HUD(this);
+	OnClicked.BindUObject(this, &AMainHUD::Log);
+	ASAPButton = SNew(SSButtonOne).OnClicked(OnClicked);
 
 	if (GEngine != nullptr)
 		GEngine->GameViewport->AddViewportWidgetContent(
-			MyUIWidget.ToSharedRef()
+			ASAPButton.ToSharedRef()
 		);
 
-	MyUIWidget->SetVisibility(EVisibility::Visible);
+	// MyUIWidget->SetVisibility(EVisibility::Visible);
+
 	
 }
 
@@ -42,4 +45,8 @@ FReply AMainHUD::LogCreation() const {
 	}
 
 	return FReply::Handled();
+}
+
+void AMainHUD::Log() {
+	UE_LOG(LogClass, Log, TEXT("AMAINHUD::Log"));
 }

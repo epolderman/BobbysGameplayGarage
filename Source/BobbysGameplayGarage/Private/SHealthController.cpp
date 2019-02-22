@@ -93,11 +93,14 @@ FReply SHealthController::OnButtonClick()
 {
 
 	UE_LOG(LogClass, Log, TEXT("SHealthController::OnButtonClick"));
-	if (OnClicked.IsBound() == true)
+	if (OnClicked.IsBound())
 	{
 		UE_LOG(LogClass, Log, TEXT("Broadcasting Delegate"));
 		OnClicked.Execute();
 	}
+	else
+	UE_LOG(LogClass, Log, TEXT("NOT Broadcasting Delegate"));
+	
 
 	return FReply::Handled();
 }
