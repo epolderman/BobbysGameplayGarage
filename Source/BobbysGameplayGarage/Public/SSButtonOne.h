@@ -6,7 +6,15 @@
 #include "Widgets/SCompoundWidget.h"
 #include <SlateColorBrush.h>
 
-// delegate with no param / return value
+/*
+
+	Compound Widgets - widgets with a fixed number of explicitly named child slots. 
+	e.g. SButton has one slot called Content which contains any widgets inside the button.
+
+	Has their own onPaint call. 
+
+*/
+
 DECLARE_DELEGATE(FHealthClick)
 
 class BOBBYSGAMEPLAYGARAGE_API SSButtonOne : public SCompoundWidget

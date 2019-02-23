@@ -40,16 +40,12 @@ END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 FReply SSButtonOne::OnButtonClick()
 {
-
 	UE_LOG(LogClass, Log, TEXT("SSButtonOne::OnButtonClick"));
+
 	if (OnClicked.IsBound())
-	{
-		UE_LOG(LogClass, Log, TEXT("Broadcasting Delegate"));
 		OnClicked.Execute();
-	}
 	else
 		UE_LOG(LogClass, Log, TEXT("NOT Broadcasting Delegate"));
-
 
 	return FReply::Handled();
 }

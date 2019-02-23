@@ -8,7 +8,19 @@
 #include "MainCharacter.h"
 #include "GameFramework/PlayerController.h"
 
+/*
+		--HUD--
+		Every character instance has their own instance of the HUD.
+		Draws to their individual viewport. 
 
+
+		Questions: 
+		Has access to GEngine instance?
+
+
+		Current Feature: 
+		Reads model data (character health)
+*/
 
 AMainHUD::AMainHUD()
 {
@@ -18,35 +30,27 @@ AMainHUD::AMainHUD()
 	// Create a SMyGenericCompoundWidget on heap, 
 	// our MyUIWidget shared pointer provides handle to object
 	// MyUIWidget = SNew(SHealthController).HUD(this);
-	OnClicked.BindUObject(this, &AMainHUD::Log);
+	OnClicked.BindUObject(this, &AMainHUD::DisplayPlayerHealth);
 	ASAPButton = SNew(SSButtonOne).OnClicked(OnClicked);
 
 	if (GEngine != nullptr)
 		GEngine->GameViewport->AddViewportWidgetContent(
 			ASAPButton.ToSharedRef()
 		);
-
-	// MyUIWidget->SetVisibility(EVisibility::Visible);
-
-	
 }
 
 
-FReply AMainHUD::LogCreation() const {
+void AMainHUD::DisplayPlayerHealth() {
 
-	auto character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	UE_LOG(LogClass, Log, TEXT("AMAINHUD::DisplayPlayerHealth"));
+
+	const AMainCharacter * character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
 	if (character != nullptr) {
-		UE_LOG(LogClass, Log, TEXT("We have a character instance"));
-		// character->PlayerHealth.AddDynamic(this, &AMainHUD::pollHealth);
+		UE_LOG(LogClass, Log, TEXT("PlayerHealth: %f"), character->getHealth());
 	}
 	else {
-		UE_LOG(LogClass, Log, TEXT("character instance in null"));
+		UE_LOG(LogClass, Log, TEXT("Character Instance is null"));
 	}
 
-	return FReply::Handled();
-}
-
-void AMainHUD::Log() {
-	UE_LOG(LogClass, Log, TEXT("AMAINHUD::Log"));
 }

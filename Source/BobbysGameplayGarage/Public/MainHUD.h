@@ -26,19 +26,14 @@ public:
 	// ++ Called as soon as game starts, create SCompoundWidget and give Viewport access
 	// void BeginPlay();
 
-	// UFUNCTION()
-	FReply LogCreation() const;
-	void Log();
-	//UFUNCTION()
-	//void pollHealth(float playerHealth);
-
+	void DisplayPlayerHealth();
 protected:
 
 	/** Cross hair asset pointer */
 	// UTexture2D* CrosshairTex;
 
 	// HUD owns widget, adds to refcount keeping it alive
-	TSharedPtr<SHealthController> MyUIWidget;
+	// TSharedPtr<SHealthController> MyUIWidget;
 	FHealthClick OnClicked;
 	TSharedPtr<SSButtonOne> ASAPButton;
 

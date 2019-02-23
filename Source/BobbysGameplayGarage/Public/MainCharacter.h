@@ -60,6 +60,5 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class UCameraComponent* TrailingCamera;
 
-	//UPROPERTY(BlueprintAssignable, Category = "Event Dispatchers")
-	//FPlayerHealth PlayerHealth;
+	float getHealth() const;
 };
