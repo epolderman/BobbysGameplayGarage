@@ -36,12 +36,14 @@ AMainHUD::AMainHUD()
 
 	if (GEngine != nullptr)
 	{
-		GEngine->GameViewport->AddViewportWidgetContent(
-			ASAPButton.ToSharedRef()
-		);
+	
 
 		GEngine->GameViewport->AddViewportWidgetContent(
 			ASAPTextBlock.ToSharedRef()
+		);
+
+		GEngine->GameViewport->AddViewportWidgetContent(
+			ASAPButton.ToSharedRef()
 		);
 
 	/*	GEngine->GameViewport->AddViewportWidgetContent(

@@ -11,6 +11,8 @@
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SSTextBlockOne::Construct(const FArguments& InArgs)
 {
+
+	Data = InArgs._Data;
 	
 	ChildSlot
 		[
@@ -25,8 +27,7 @@ void SSTextBlockOne::Construct(const FArguments& InArgs)
 			SNew(SHorizontalBox)
 			+ SHorizontalBox::Slot().AutoWidth()
 		[
-				SNew(STextBlock)
-				.Text(this, &SSTextBlockOne::getText)
+				SNew(STextBlock).Text(this, &SSTextBlockOne::getText)
 		]
 		]
 		]
