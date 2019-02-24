@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,8 @@
 #include <SlateDelegates.h>
 #include "SHealthController.h"
 #include "SSButtonOne.h"
+#include "SSTextBlockOne.h"
+#include <STextBlock.h>
 #include "MainHUD.generated.h"
 
 
@@ -27,6 +27,7 @@ public:
 	// void BeginPlay();
 
 	void DisplayPlayerHealth();
+	FText getText() const;
 protected:
 
 	/** Cross hair asset pointer */
@@ -36,6 +37,8 @@ protected:
 	// TSharedPtr<SHealthController> MyUIWidget;
 	FHealthClick OnClicked;
 	TSharedPtr<SSButtonOne> ASAPButton;
+	TSharedPtr<SSTextBlockOne> ASAPTextBlock;
+	TSharedPtr<STextBlock> ASAPText;
 
 private:
 	

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "MainHUD.h"
 #include "Engine.h" 
 #include <Attribute.h>
@@ -32,11 +30,24 @@ AMainHUD::AMainHUD()
 	// MyUIWidget = SNew(SHealthController).HUD(this);
 	OnClicked.BindUObject(this, &AMainHUD::DisplayPlayerHealth);
 	ASAPButton = SNew(SSButtonOne).OnClicked(OnClicked);
+	ASAPTextBlock = SNew(SSTextBlockOne);
+	 // ASAPText = SNew(STextBlock).Text(this, &AMainHUD::getText);
+
 
 	if (GEngine != nullptr)
+	{
 		GEngine->GameViewport->AddViewportWidgetContent(
 			ASAPButton.ToSharedRef()
 		);
+
+		GEngine->GameViewport->AddViewportWidgetContent(
+			ASAPTextBlock.ToSharedRef()
+		);
+
+	/*	GEngine->GameViewport->AddViewportWidgetContent(
+			ASAPText.ToSharedRef()
+		);*/
+	}
 }
 
 
@@ -54,3 +65,8 @@ void AMainHUD::DisplayPlayerHealth() {
 	}
 
 }
+
+FText AMainHUD::getText() const {
+	return FText::FromString("Player Health");;
+}
+

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,7 +9,7 @@
 	Compound Widgets - widgets with a fixed number of explicitly named child slots. 
 	e.g. SButton has one slot called Content which contains any widgets inside the button.
 
-	Has their own onPaint call. 
+	Has their own OnPaint call. Responsible for their own drawing. 
 
 */
 

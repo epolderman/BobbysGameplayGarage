@@ -61,4 +61,6 @@ public:
 		class UCameraComponent* TrailingCamera;
 
 	float getHealth() const;
+
+	void decrementHealth(const float health);
 };
