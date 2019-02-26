@@ -6,6 +6,10 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+/* 
+	This should be an event and fires. Hook this up tomorrow for health. 
+	https://docs.unrealengine.com/en-us/Programming/UnrealArchitecture/Delegates/Events
+*/
 DECLARE_DELEGATE_OneParam(FPlayerHealth, FString)
 
 UCLASS()
