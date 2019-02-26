@@ -46,7 +46,6 @@ AMainCharacter::AMainCharacter()
 	
 	iPlayerHealth = 50;
 	bIsFirstPersonPerspectiveEnabled = false;
-	// UE_LOG(LogClass, Log, TEXT("Hello There!!...!"));
 }
 
 void AMainCharacter::PostInitializeComponents()
@@ -123,7 +122,7 @@ const FRotator AMainCharacter::getCharacterRotation() {
 void AMainCharacter::MoveForward(float Value)
 {
 	// Note: Remove after testing
-	this->decrementHealth(1.0f);
+	this->decrementHealth(.001f);
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// get forward vector +X is forward, -X is back
@@ -150,3 +149,4 @@ float AMainCharacter::getHealth() const {
 void AMainCharacter::decrementHealth(const float health) {
 	this->iPlayerHealth -= health;
 }
+

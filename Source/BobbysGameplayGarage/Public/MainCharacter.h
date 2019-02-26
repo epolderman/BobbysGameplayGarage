@@ -6,7 +6,7 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
-// DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPlayerHealth, float, playerHealth);
+DECLARE_DELEGATE_OneParam(FPlayerHealth, FString)
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
@@ -63,4 +63,6 @@ public:
 	float getHealth() const;
 
 	void decrementHealth(const float health);
+
+	FPlayerHealth healthDelegate;
 };
