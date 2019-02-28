@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include <DelegateCombinations.h>
 #include "MainCharacter.generated.h"
 
 /* 
@@ -11,6 +12,10 @@
 	https://docs.unrealengine.com/en-us/Programming/UnrealArchitecture/Delegates/Events
 */
 DECLARE_DELEGATE_OneParam(FPlayerHealth, FString)
+// DECLARE_EVENT(AMainCharacter, FChangedHealthEvent)
+
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FChangedHealthEvent, float);
 
 UCLASS()
 class BOBBYSGAMEPLAYGARAGE_API AMainCharacter : public ACharacter
@@ -50,6 +55,9 @@ protected:
 	const FRotator getCharacterRotation();
 
 public:	
+
+	
+
 	AMainCharacter();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -69,4 +77,7 @@ public:
 	void decrementHealth(const float health);
 
 	FPlayerHealth healthDelegate;
+
+	FChangedHealthEvent OnHealthUpdated;
+
 };

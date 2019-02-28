@@ -25,13 +25,10 @@ AMainHUD::AMainHUD()
 		
 	UE_LOG(LogClass, Log, TEXT("Constructing HUD"));
 
-	// Create a SMyGenericCompoundWidget on heap, 
-	// our MyUIWidget shared pointer provides handle to object
-	// MyUIWidget = SNew(SHealthController).HUD(this);
 	OnClicked.BindUObject(this, &AMainHUD::DisplayPlayerHealth);
 	ASAPButton = SNew(SSButtonOne).OnClicked(OnClicked);
 	ASAPTextBlock = SNew(SSTextBlockOne);
-	 // ASAPText = SNew(STextBlock).Text(this, &AMainHUD::getText);
+	OnHealthChange.AddUObject(this, &AMainHUD::printHealth);
 
 
 	if (GEngine != nullptr)
@@ -61,6 +58,7 @@ void AMainHUD::DisplayPlayerHealth() {
 
 	if (character != nullptr) {
 		UE_LOG(LogClass, Log, TEXT("PlayerHealth: %f"), character->getHealth());
+		character->OnHealthUpdated.Broadcast(5);
 	}
 	else {
 		UE_LOG(LogClass, Log, TEXT("Character Instance is null"));
@@ -71,4 +69,9 @@ void AMainHUD::DisplayPlayerHealth() {
 FText AMainHUD::getText() const {
 	return FText::FromString("Player Health");;
 }
+
+void AMainHUD::printHealth(float health)  {
+	UE_LOG(LogClass, Log, TEXT("PlayerHealth: %f"), health);
+}
+
 

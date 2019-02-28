@@ -8,6 +8,7 @@
 #include "SSButtonOne.h"
 #include "SSTextBlockOne.h"
 #include <STextBlock.h>
+#include <MainCharacter.h>
 #include "MainHUD.generated.h"
 
 
@@ -28,6 +29,9 @@ public:
 
 	void DisplayPlayerHealth();
 	FText getText() const;
+
+	UFUNCTION()
+	void printHealth(float health);
 protected:
 
 	/** Cross hair asset pointer */
@@ -39,6 +43,8 @@ protected:
 	TSharedPtr<SSButtonOne> ASAPButton;
 	TSharedPtr<SSTextBlockOne> ASAPTextBlock;
 	TSharedPtr<STextBlock> ASAPText;
+	FChangedHealthEvent OnHealthChange;
+
 
 private:
 	

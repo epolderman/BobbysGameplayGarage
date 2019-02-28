@@ -122,7 +122,7 @@ const FRotator AMainCharacter::getCharacterRotation() {
 void AMainCharacter::MoveForward(float Value)
 {
 	// Note: Remove after testing
-	this->decrementHealth(.001f);
+	// this->decrementHealth(.001f);
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// get forward vector +X is forward, -X is back
@@ -146,7 +146,11 @@ float AMainCharacter::getHealth() const {
 	return iPlayerHealth;
 }
 
+
 void AMainCharacter::decrementHealth(const float health) {
 	this->iPlayerHealth -= health;
+	// UE_LOG(LogClass, Log, TEXT("AMainCharacter decrementHealth"));
+	// OnHealthUpdated.Broadcast(this->iPlayerHealth);
 }
+
 
